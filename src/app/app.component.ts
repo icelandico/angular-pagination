@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 interface IData {
@@ -14,7 +14,9 @@ interface IData {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  displayData: IData[] = []
+  fetchedData: IData[] = [];
+  displayedData: IData[] = [];
+  itemsPerPage: number = 10;
 
   constructor(private http: HttpClient) {
     this.fetchData();
@@ -23,8 +25,15 @@ export class AppComponent {
   fetchData(): void {
     const dataConfig$ = this.http.get('https://jsonplaceholder.typicode.com/posts');
     dataConfig$.subscribe((data: any) => {
-        this.displayData = data;
+        this.fetchedData = data;
+        this.onPageChange();
       }
     );
+  }
+
+  onPageChange(page: number = 1): void {
+    const startItem = (page - 1) * this.itemsPerPage;
+    const endItem = page * this.itemsPerPage;
+    this.displayedData = this.fetchedData.slice(startItem, endItem);
   }
 }
