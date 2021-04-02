@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 interface IData {
@@ -14,7 +14,7 @@ interface IData {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  displayData: IData[] = [];
+  displayData: IData[] = []
 
   constructor(private http: HttpClient) {
     this.fetchData();
@@ -22,6 +22,9 @@ export class AppComponent {
 
   fetchData(): void {
     const dataConfig$ = this.http.get('https://jsonplaceholder.typicode.com/posts');
-    dataConfig$.subscribe((data: IData[]) => this.displayData = data);
+    dataConfig$.subscribe((data: any) => {
+        this.displayData = data;
+      }
+    );
   }
 }
