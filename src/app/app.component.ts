@@ -17,6 +17,7 @@ export class AppComponent {
   fetchedData: IData[] = [];
   displayedData: IData[] = [];
   itemsPerPage: number = 10;
+  allPages: number;
 
   constructor(private http: HttpClient) {
     this.fetchData();
@@ -27,6 +28,7 @@ export class AppComponent {
     dataConfig$.subscribe((data: any) => {
         this.fetchedData = data;
         this.onPageChange();
+        this.allPages = Math.ceil(this.fetchedData.length / this.itemsPerPage);
       }
     );
   }
