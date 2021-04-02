@@ -5,20 +5,20 @@
 
 .pagination__button {
   padding: 5px;
-  background-color: #a9bee2;
+  background-color: #5a9d6e;
   border: 1px solid #2d445f;
   cursor: pointer;
   border-radius: 3px;
   margin: 0 5px;
 
   &:hover {
-    background-color: #849dc3;
+    background-color: #4e8c61;
   }
 
   &--disabled {
     cursor: not-allowed;
     pointer-events: none;
-    background-color: #7e8085;
+    background-color: #616b62;
   }
 }
 

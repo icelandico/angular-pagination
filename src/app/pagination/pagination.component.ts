@@ -25,6 +25,10 @@ export class PaginationComponent implements OnInit {
     this.changePage.emit(this.currentPage);
   }
 
+  onSetPage(event): void {
+    this.currentPage = event.target.value;
+  }
+
   onFirstPage(): void {
     this.currentPage = 1;
   }

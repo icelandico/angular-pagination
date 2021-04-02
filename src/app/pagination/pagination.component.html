@@ -12,7 +12,7 @@
     Previous
   </div>
   <div class="pagination__page-active">
-    <input class="pagination__current-page" [value]="currentPage"> / <span>{{allPagesNumber}}</span>
+    <input class="pagination__current-page" (input)="onSetPage($event)" [value]="currentPage"> / <span>{{allPagesNumber}}</span>
   </div>
   <div class="pagination__button pagination__page-next"
        [ngClass]="currentPage === allPagesNumber && 'pagination__button--disabled'"
